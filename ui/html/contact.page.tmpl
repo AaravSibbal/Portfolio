@@ -1,0 +1,39 @@
+{{template "base" .}}
+
+{{define "title"}}Contact{{end}}
+
+{{define "body"}}
+
+
+<form action="/contact" method="post">
+    {{with .Form}}
+
+        {{with .Errors.Get "name"}}
+            <div class="error">{{.}}</div>
+        {{end}}
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+
+        {{with .Errors.Get "email"}}
+            <div class="error">{{.}}</div>
+        {{end}}
+        <label for="name">Email:</label>
+        <input type="text" name="email" id="email">
+
+        <div class="error"></div>
+        {{with .Errors.Get "phone"}}
+            <div class="error">{{.}}</div>
+        {{end}}
+        <label for="phone">Phone No:</label>
+        <input type="text" name="Phone" id="phone">
+        
+        {{with .Errors.Get "discription"}}
+            <div class="error">{{.}}</div>
+        {{end}}
+        <label for="discription">Discription:</label>
+        <input type="text" name="discription" id="discription">
+
+        <input type="submit" value="Submit">
+    {{end}}
+</form>
+{{end}}
