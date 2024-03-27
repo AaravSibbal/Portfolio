@@ -18,6 +18,7 @@ func (app *application) routes() http.Handler {
 	mux.Get("/contact", dynamicMiddleware.ThenFunc(app.contactForm))
 	mux.Post("/contact", dynamicMiddleware.ThenFunc(app.contact))
 	mux.Get("/projects", dynamicMiddleware.ThenFunc(app.projects))
+	mux.Get("/ping", dynamicMiddleware.ThenFunc(app.pong))
 
 	fileServer := http.FileServer(http.Dir("../../ui/static"))
 	mux.Get("/static/", http.StripPrefix("/static", fileServer))

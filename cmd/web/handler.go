@@ -54,3 +54,7 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 func (app *application) projects(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "projects.page.tmpl", nil)
 }
+
+func (app *application) pong(w http.ResponseWriter, r *http.Request){
+	w.Write([]byte("pong"))
+}

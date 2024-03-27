@@ -20,14 +20,14 @@ type application struct {
 }
 
 func main() {
-	addr := flag.String("addr", ":4000", "HTTP network address")
+	addr := flag.String("addr", ":80", "HTTP network address")
 
 	secret := flag.String("secret", "-j-&qeotIeCgF&w_qJwOM^jYniD6J11K", "Secret")
 
 	infoLog := log.New(os.Stdout, "INFO:\t", log.Ldate|log.Ltime)
 	errLogger := log.New(os.Stdout, "ERROR:\t", log.Ltime|log.Ldate|log.Lshortfile)
 
-	err := godotenv.Load("../../.env")
+	err := godotenv.Load(".env")
 
 	if err != nil {
 		errLogger.Fatal("Error loading evvironment variable")
@@ -38,7 +38,7 @@ func main() {
 	session.Secure = true
 	session.SameSite = http.SameSiteStrictMode
 
-	newTemplateCache, err := newTemplateCache("../../ui/html")
+	newTemplateCache, err := newTemplateCache("ui/html")
 
 	if err != nil {
 		errLogger.Fatal(err)
