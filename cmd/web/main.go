@@ -55,7 +55,7 @@ func main() {
 	tlsConfig := &tls.Config{
 		PreferServerCipherSuites: true,
 		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
-		InsecureSkipVerify: true,
+		InsecureSkipVerify:       true,
 	}
 
 	srv := &http.Server{

@@ -5,12 +5,13 @@ import (
 
 	"github.com/bmizerany/pat"
 	"github.com/justinas/alice"
+	"github.com/justinas/nosurf"
 )
 
 func (app *application) routes() http.Handler {
 	
 	standardMiddleware := alice.New(app.logRequest, app.recoverPanic, app.secureHeaders) 
-	dynamicMiddleware := alice.New(app.sessions.Enable) 
+	dynamicMiddleware := alice.New(app.sessions.Enable, nosurf.New()) 
 	
 	mux := pat.New()
 
