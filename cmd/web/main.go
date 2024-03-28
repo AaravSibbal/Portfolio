@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"html/template"
 	"log"
@@ -20,7 +21,7 @@ type application struct {
 }
 
 func main() {
-	addr := flag.String("addr", ":80", "HTTP network address")
+	addr := flag.String("addr", ":4000", "HTTP network address")
 
 	secret := flag.String("secret", "-j-&qeotIeCgF&w_qJwOM^jYniD6J11K", "Secret")
 
@@ -51,13 +52,24 @@ func main() {
 		errorLog:      errLogger,
 	}
 
+	tlsConfig := &tls.Config{
+		PreferServerCipherSuites: true,
+		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
+		InsecureSkipVerify: true,
+	}
+
 	srv := &http.Server{
-		Addr: *addr,
+		Addr:         *addr,
+		TLSConfig:    tlsConfig,
+		ErrorLog:     errLogger,
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
 
 		Handler: app.routes(),
 	}
 
-	err = srv.ListenAndServe()
+	err = srv.ListenAndServeTLS("tls/cert.pem", "tls/key.pem")
 
 	log.Fatal(err)
 }
