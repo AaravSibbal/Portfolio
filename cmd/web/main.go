@@ -3,14 +3,13 @@ package main
 import (
 	"crypto/tls"
 	"flag"
+	"github.com/golangcollege/sessions"
+	"github.com/joho/godotenv"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"time"
-
-	"github.com/golangcollege/sessions"
-	"github.com/joho/godotenv"
 )
 
 type application struct {
