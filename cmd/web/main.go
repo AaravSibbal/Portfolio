@@ -30,7 +30,7 @@ func main() {
 	err := godotenv.Load(".env")
 
 	if err != nil {
-		errLogger.Fatal("Error loading evvironment variable")
+		errLogger.Fatal("Error loading environment variable")
 	}
 
 	session := sessions.New([]byte(*secret))
@@ -68,7 +68,7 @@ func main() {
 		Handler: app.routes(),
 	}
 
-	err = srv.ListenAndServeTLS("tls/cert.pem", "tls/key.pem")
+	err = srv.ListenAndServe()
 
 	log.Fatal(err)
 }
