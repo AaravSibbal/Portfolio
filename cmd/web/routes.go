@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"net/http"
@@ -7,11 +7,11 @@ import (
 	"github.com/justinas/alice"
 )
 
-func (app *application) routes() http.Handler {
+func (app *application) Routes() http.Handler {
 
-	standardMiddleware := alice.New(app.logRequest, app.recoverPanic, app.secureHeaders)
+	standardMiddleware := alice.New(app.logRequest, app.recoverPanic, app.secureHeaders) 
 	dynamicMiddleware := alice.New(app.sessions.Enable)
-
+	
 	mux := pat.New()
 
 	mux.Get("/", dynamicMiddleware.ThenFunc(app.home))
@@ -20,7 +20,7 @@ func (app *application) routes() http.Handler {
 	mux.Get("/projects", dynamicMiddleware.ThenFunc(app.projects))
 	mux.Get("/ping", dynamicMiddleware.ThenFunc(app.pong))
 
-	fileServer := http.FileServer(http.Dir("ui/static"))
+	fileServer := http.FileServer(http.Dir("../../ui/static"))
 	mux.Get("/static/", http.StripPrefix("/static", fileServer))
 
 	return standardMiddleware.Then(mux)

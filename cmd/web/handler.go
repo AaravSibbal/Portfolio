@@ -1,7 +1,6 @@
-package main
+package server
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 
@@ -21,11 +20,10 @@ func (app *application) contactForm(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	fmt.Println("This is something")
-	// if err != nil {
-	// 	app.clientError(w, http.StatusBadRequest)
-	// 	app.errorLog.Output(2, "something just happened")
-	// }
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		app.errorLog.Output(2, "something just happened")
+	}
 
 	form := forms.New(r.PostForm)
 	form.Required("name", "email", "phone", "discription")

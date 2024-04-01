@@ -6,8 +6,11 @@
 
 
 <form action="/contact" method="post">
+    {{with .Flash}}
+        {{.}}
+        <br>
+    {{end}}
     {{with .Form}}
-
         {{with .Errors.Get "name"}}
             <div class="error">{{.}}</div>
         {{end}}

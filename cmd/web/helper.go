@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"bytes"
@@ -7,7 +7,6 @@ import (
 	"runtime/debug"
 	"sync"
 )
-
 
 func (app *application) addDefaultData(r *http.Request, td *templateData) *templateData {
 
@@ -55,3 +54,4 @@ func (app *application) serverError(w http.ResponseWriter, err error) {
 func (app *application) clientError(w http.ResponseWriter, status int) {
 	http.Error(w, http.StatusText(status), status)
 }
+
