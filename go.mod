@@ -1,6 +1,6 @@
 module github.com/AaravSibbal/Portfolio
 
-go 1.22
+go 1.22.1
 
 require github.com/golangcollege/sessions v1.2.0
 
