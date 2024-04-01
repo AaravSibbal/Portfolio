@@ -23,8 +23,7 @@ type application struct {
 
 var secret = flag.String("secret", "-j-&qeotIeCgF&w_qJwOM^jYniD6J11K", "Secret")
 
-var session = sessions.New([]byte(*secret))
-
+var session = makeSessionSecure(sessions.New([]byte(*secret))) 
 var infoLog = log.New(os.Stdout, "INFO:\t", log.Ldate|log.Ltime)
 var errLogger = log.New(os.Stdout, "ERROR:\t", log.Ltime|log.Ldate|log.Lshortfile)
 
@@ -49,9 +48,6 @@ func Run() {
 		errLogger.Fatal("Error loading environment variable")
 	}
 
-	session.Lifetime = 12 * time.Hour
-	session.Secure = true
-	session.SameSite = http.SameSiteStrictMode
 
 	if err != nil {
 		errLogger.Fatal(err)
@@ -85,4 +81,12 @@ func getTemplateCache() map[string]*template.Template {
 		return nil
 	}
 	return templateCache
+}
+
+func makeSessionSecure(session *sessions.Session) *sessions.Session{
+	session.Lifetime = 12 * time.Hour
+	session.Secure = true
+	session.SameSite = http.SameSiteStrictMode
+
+	return session
 }
