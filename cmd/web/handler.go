@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -43,7 +44,10 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 		os.Getenv("GMAIL"), os.Getenv("PASSWORD"))
 
 	if err != nil {
+		fmt.Printf("*****GMAIL: %s\n PASSWORD: %s\n",os.Getenv("GMAIL"), os.Getenv("PASSWORD"))
 		app.serverError(w, err)
+		http.Redirect(w, r, "/contact", http.StatusSeeOther)
+		return
 	}
 
 	app.sessions.Put(r, "flash", "Your message was sent successfully")
