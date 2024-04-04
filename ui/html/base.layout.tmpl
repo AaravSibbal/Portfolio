@@ -2,27 +2,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarav - {{template "title" .}}</title>
+    <link rel="stylesheet" href="../static/css/common.css">
+    {{template "stylesheet" .}}   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-    <header>
-        <h1>Aarav Sibbal</h1>
+    <div class="content-wrap">
+        <header>
+            <div class="title">
+                <a href="/">
+                    <h1>Aarav </h1>
+                </a>
+            </div>
+            <div class="links">
+                <a href="/" class="home-link">Home</a>
+                <a href="/projects" class="projects-link">Projects</a>
+                <a href="/contact" class="contact-link">Contact</a>
+            </div>
+        </header>
 
-        <div>
-            <a href="/">Home</a>
-            <a href="/projects">Projects</a>
-            <a href="/contact">Contact</a>
-        </div>
-    </header>
-
-    <section>
-        {{template "body" .}}
-    </section>
+        <section class="section">
+            {{template "body" .}}
+        </section>
+    </div>
     {{template "footer" .}}
 </body>
+
 </html>
 
 {{end}}

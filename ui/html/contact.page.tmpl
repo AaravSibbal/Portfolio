@@ -2,41 +2,52 @@
 
 {{define "title"}}Contact{{end}}
 
+{{define "stylesheet"}}
+<link rel="stylesheet" href="../static/css/contact.css">{{end}}
+
 {{define "body"}}
 
 
-<form action="/contact" method="post">
+<form action="/contact" method="post" class="form">
+    <br>
     {{with .Flash}}
-        {{.}}
-        <br>
+    {{.}}
+    <br>
     {{end}}
     {{with .Form}}
+    <div class="form-elem">
         {{with .Errors.Get "name"}}
-            <div class="error">{{.}}</div>
+        <div class="error">{{.}}</div>
         {{end}}
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name">
+        <label for="name" class="label-name">Name:</label>
+        <input type="text" name="name" id="name" class="text-box" autocomplete="name">
+    </div>
 
+    <div class="form-elem">
         {{with .Errors.Get "email"}}
-            <div class="error">{{.}}</div>
+        <div class="error">{{.}}</div>
         {{end}}
-        <label for="name">Email:</label>
-        <input type="text" name="email" id="email">
+        <label for="name" class="name-label">Email:</label>
+        <input type="text" name="email" id="email" class="text-box" autocomplete="email">
+    </div>
 
+    <div class="form-elem">
         <div class="error"></div>
         {{with .Errors.Get "phone"}}
-            <div class="error">{{.}}</div>
+        <div class="error">{{.}}</div>
         {{end}}
-        <label for="phone">Phone No:</label>
-        <input type="text" name="Phone" id="phone">
-        
-        {{with .Errors.Get "discription"}}
-            <div class="error">{{.}}</div>
-        {{end}}
-        <label for="discription">Discription:</label>
-        <input type="text" name="discription" id="discription">
+        <label for="phone" class="email-label">Phone No:</label>
+        <input type="text" name="Phone" id="phone" class="text-box" autocomplete="mobile">
+    </div>
 
-        <input type="submit" value="Submit">
+    <div class="form-elem">
+        {{with .Errors.Get "discription"}}
+        <div class="error">{{.}}</div>
+        {{end}}
+        <label for="discription" class="discription-label">Discription:</label>
+        <textarea type="text" name="discription" id="discription" class="discription"></textarea>
+    </div>
+    <input type="submit" value="Submit" class="submit">
     {{end}}
 </form>
 {{end}}

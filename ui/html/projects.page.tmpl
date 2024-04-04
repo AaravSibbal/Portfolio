@@ -1,13 +1,46 @@
 {{template "base" .}}
 
 {{define "title"}}Projects{{end}}
-{{define "body"}}    
-    <p>There are my wonderful projects that I have made</p>
-    <ul>    
-        <li>snippetbox</li>
-        <li>Resell Goat</li>
-        <li>Titanic Survivor Predictor</li>
-        <li>Portfolio</li>
-    </ul>
 
+{{define "stylesheet"}}
+<link rel="stylesheet" href="../static/css/projects.css">
+{{end}}
+
+{{define "body"}}
+<div class="project">
+    <h3 class="project-title"><u>Portfolio:</u></h3>
+    <p class="project-text">
+
+        My first production website, with the backend in Go.
+        I render the html pages using standard library package
+        html/templates. Implemented mailing through stmp protocol.
+        Hosted on Digital Ocean with CI/CD.
+    </p>
+    <a href="https://github.com/AaravSibbal/Portfolio" target="_blank" class="p-link">Github</a>
+    <a href="https://aaravsibbal.com" target="_blank" class="p-link">Live Website</a>
+</div>
+<div class="project">
+    <h3 class="project-title"><u>Zippy:</u></h3>
+    <p class="project-text">
+
+        A CLI made with go made to make the lives of window users
+        zipping easy, because both the default zipping tool and
+        7zip have not do friendly CLI's. Mine only has 2 options
+        -f "file" or "-d" directory and it is made to just do the job.
+    </p>
+    <a href="https://github.com/AaravSibbal/zippy" target="_blank" class="p-link">Github</a>
+</div>
+<div class="project">
+    <h3 class="project-title"><u>Schedule:</u></h3>
+
+    <p class="project-text">
+        My club needed a way to scrape timetable data of the year
+        to make a better experience for students making their
+        timetable so I made a web scraper that does just that using
+        Typescript and puppeteer.
+    </p>
+    <a href="https://github.com/AaravSibbal/WebScraper" target="_blank" class="p-link">Github</a>
+</div>
+<br><br>
+<script src="../static/js/projects.js"></script>
 {{end}}

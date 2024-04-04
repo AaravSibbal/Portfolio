@@ -1,0 +1,56 @@
+.submit {
+    border-width: 1px solid;
+    border-color: white;
+    background-color: black;
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: inherit;
+    font-size: 2em;
+}
+
+.form>div {
+    margin-bottom: 8px;
+    font-size: 2em;
+    margin-left: 3px;
+}
+
+.discription {
+    width: 100%;
+    height: 100px;
+    margin-right: 5px;
+    overflow-y: scroll;
+    /* border-bottom: 3px solid; */
+    border-color: white;
+}
+
+.text-box {
+    /* border-bottom: 3px solid; */
+    border-color: white;
+    background: transparent;
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: 0.8em;
+}
+
+textarea {
+    background: transparent;
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: 0.8em;
+}
+
+@media (min-width:600px) {
+    .form {
+        margin-left: 20%;
+        margin-right: 20%;
+        vertical-align: middle;
+    }
+}
+
+@media (min-width:1025px) {
+    .form {
+        margin-left: 30%;
+        margin-right: 30%;
+        vertical-align: middle;
+    }
+}

@@ -1,0 +1,31 @@
+.project-text {
+    font-size: 2.0em;
+}
+
+.project-title {
+    font-size: 2.0em;
+
+}
+
+.section {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.p-link {
+    font-size: 2.0em;
+}
+
+@media (min-width:600px) {
+    .project {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (min-width:1025px) {
+    .project {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
