@@ -27,6 +27,13 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	form := forms.New(r.PostForm)
+	honeyPot := form.Get("explanation")
+	if honeyPot != "" {
+		app.infoLog.Println("We got the bee with our honey pot!!, fuck them bots")
+		app.sessions.Put(r, "flash", "you are not allowed to contact me")
+		http.Redirect(w, r, "/contact", http.StatusSeeOther)
+
+	}
 	form.Required("name", "email", "phone", "discription")
 	form.RequiredLength("phone", 10)
 	form.MinLength("discription", 20)
@@ -44,7 +51,7 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 		os.Getenv("GMAIL"), os.Getenv("PASSWORD"))
 
 	if err != nil {
-		fmt.Printf("*****GMAIL: %s\n PASSWORD: %s\n",os.Getenv("GMAIL"), os.Getenv("PASSWORD"))
+		fmt.Printf("*****GMAIL: %s\n PASSWORD: %s\n", os.Getenv("GMAIL"), os.Getenv("PASSWORD"))
 		app.serverError(w, err)
 		http.Redirect(w, r, "/contact", http.StatusSeeOther)
 		return
